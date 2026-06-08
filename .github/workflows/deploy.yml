@@ -1,0 +1,42 @@
+name: Deploy Static Website to GitHub Pages
+
+# 1. Bu workflow (otomasyon) ne zaman tetiklenecek?
+on:
+  push:
+    branches:
+      - main  # Sadece main branch'ine push yapıldığında çalış
+    paths:
+      - 'index.html'  # KRİTİK İSTER: Sadece index.html dosyası değiştiğinde tetiklen
+
+# 2. Gerekli GitHub Pages izinlerini tanımlıyoruz
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 3. Aynı anda birden fazla push gelirse çakışmayı önlemek için kuyruğa al
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest # Robotumuz temiz bir Ubuntu sunucusunda çalışacak
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4 # Proje kodlarını robotun içine indirir
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5 # GitHub Pages ayarlarını robot için yapılandırır
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' # Kök dizindeki dosyaları (index.html'i) paketle
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # Paketi GitHub Pages'e yükle ve canlıya al
