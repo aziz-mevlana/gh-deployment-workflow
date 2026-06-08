@@ -8,8 +8,6 @@ on:
     paths:
       - 'index.html'  # KRİTİK İSTER: Sadece index.html dosyası değiştiğinde tetiklen
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 # 2. Gerekli GitHub Pages izinlerini tanımlıyoruz
 permissions:
@@ -28,6 +26,10 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest # Robotumuz temiz bir Ubuntu sunucusunda çalışacak
+
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4 # Proje kodlarını robotun içine indirir
