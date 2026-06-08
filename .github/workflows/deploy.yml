@@ -8,6 +8,9 @@ on:
     paths:
       - 'index.html'  # KRİTİK İSTER: Sadece index.html dosyası değiştiğinde tetiklen
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # 2. Gerekli GitHub Pages izinlerini tanımlıyoruz
 permissions:
   contents: read
