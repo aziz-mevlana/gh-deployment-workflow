@@ -29,3 +29,5 @@ Eğer tüm adımlar başarıyla tamamlandıysa, web sitesine aşağıdaki URL fo
 ## Kazanımlar
 
 Bu çalışma ile; YAML formatında iş akışı (workflow) yazımı, event-driven (olaya dayalı) tetikleyiciler, bulut runner mimarisi, RBAC (rol tabanlı erişim kontrolü) izinlerinin tanımlanması ve statik web sitelerinin otomatik dağıtım süreçleri pratik edilmiştir.
+
+[https://github.com/aziz-mevlana/gh-deployment-workflow](https://roadmap.sh/projects/github-actions-deployment-workflow)
